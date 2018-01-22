@@ -51,9 +51,11 @@ RUN apk add --no-cache curl make gcc g++ python linux-headers binutils-gold gnup
     cd / && \
     if [ `which npm` ]; then \
         if [ -n "$NPM_VERSION" ]; then \
+            if [ "$IN_CHINA" == "true" ]; then \
+                npm config set registry https://registry.npm.taobao.org; \
+            fi; \
             npm install -g npm@${NPM_VERSION}; \
-            [ "$IN_CHINA" == "true" ] && npm config set registry https://registry.npm.taobao.org || true; \
-            npm install -g cnpm --registry=https://registry.npm.taobao.org; \
+            npm install -g cnpm; \
         fi; \
         find /usr/lib/node_modules/npm -name test -o -name .bin -type d | xargs rm -rf; \
     fi && \
