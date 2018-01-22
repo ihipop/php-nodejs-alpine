@@ -1,6 +1,9 @@
 A base  [Alipne](https://alpinelinux.org/)  image, contains `PHP` `NodeJS` `NPM` `GIT` `curl` , first intent for [**deployer-toolkit**](https://github.com/ihipop/deployer-toolkit) 
 
 Docker Hub: https://hub.docker.com/r/ihipop/php-nodejs-alpine/tags/ 
+Source: https://github.com/ihipop/php-nodejs-alpine
+
+[中文说明](README_CN.md)
 
 # Cmd Usage
 
@@ -23,7 +26,7 @@ For example :
 
 Means
 
-> PHP at  version `7.1.x` , NODE at  version `8.9.x` ,and contains some special optimise for users from `china`
+> `PHP` at  version `7.1.x` , `NodeJs` at  version `8.9.x` ,and contains some special optimise for users from `China`
 
 **If you won't to use this from this image in `china`, please choose those docker image without the `china` specialtag**
 
