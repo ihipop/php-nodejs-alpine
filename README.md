@@ -1,16 +1,17 @@
 A base  [Alipne](https://alpinelinux.org/)  image, contains `PHP` `NodeJS` `NPM` `GIT` `curl` , first intent for [**deployer-toolkit**](https://github.com/ihipop/deployer-toolkit) 
 
 Docker Hub: https://hub.docker.com/r/ihipop/php-nodejs-alpine/tags/ 
+
 Source: https://github.com/ihipop/php-nodejs-alpine
 
-[中文说明](README_CN.md)
+[`china`标签中文优化项说明](README_CN.md)
 
 # Cmd Usage
 
 ```bash
-docker run -rm -it ihipop/php-nodejs-alpine:php7.1-node8.9 php -v
-docker run -rm -it ihipop/php-nodejs-alpine:php7.1-node8.9 node -v
-docker run -rm -it ihipop/php-nodejs-alpine:php7.1-node8.9 npm -v
+docker run --rm -it ihipop/php-nodejs-alpine:php7.1-node8.9 php -v
+docker run --rm -it ihipop/php-nodejs-alpine:php7.1-node8.9 node -v
+docker run --rm -it ihipop/php-nodejs-alpine:php7.1-node8.9 npm -v
 #...
 ```
 
