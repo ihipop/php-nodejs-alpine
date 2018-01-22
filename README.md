@@ -4,7 +4,7 @@ Docker Hub: https://hub.docker.com/r/ihipop/php-nodejs-alpine/tags/
 
 Source: https://github.com/ihipop/php-nodejs-alpine
 
-[含有`china`标签镜像的中文优化项说明](README_CN.md)
+[含有`china`标签镜像的中文优化项说明](https://github.com/ihipop/php-nodejs-alpine/blob/master/README_CN.md)
 
 # Cmd Usage
 
@@ -27,7 +27,7 @@ For example :
 
 Means
 
-> `PHP` at  version `7.1.x` , `NodeJs` at  version `8.9.x` ,and contains [some special optimise](README_CN.md) for users from `China`
+> `PHP` at  version `7.1.x` , `NodeJs` at  version `8.9.x` ,and contains [some special optimise](https://github.com/ihipop/php-nodejs-alpine/blob/master/README_CN.md) for users from `China`
 
 **If you won't to use this from this image in `china`, please choose those docker image without the `china` specialtag**
 
