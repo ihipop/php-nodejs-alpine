@@ -9,9 +9,9 @@ Source: https://github.com/ihipop/php-nodejs-alpine
 # Cmd Usage
 
 ```bash
-docker run --rm -it ihipop/php-nodejs-alpine:php7.1-node8.9 php -v
-docker run --rm -it ihipop/php-nodejs-alpine:php7.1-node8.9 node -v
-docker run --rm -it ihipop/php-nodejs-alpine:php7.1-node8.9 npm -v
+docker run --rm -it -v $(pwd):'/project' ihipop/php-nodejs-alpine:php7.1-node8.9 php -v
+docker run --rm -it -v $(pwd):'/project' ihipop/php-nodejs-alpine:php7.1-node8.9 node -v
+docker run --rm -it -v $(pwd):'/project' ihipop/php-nodejs-alpine:php7.1-node8.9 npm -v
 #...
 ```
 
@@ -29,7 +29,7 @@ Means
 
 > `PHP` at  version `7.1.x` , `NodeJs` at  version `8.9.x` ,and contains [some special optimise](https://github.com/ihipop/php-nodejs-alpine/blob/master/README_CN.md) for users from `China`
 
-**If you won't to use this from this image in `china`, please choose those docker image without the `china` specialtag**
+**If you won't to use  this image in `china`, please choose those docker image without the `china` specialtag**
 
 # Build 
 

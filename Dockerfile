@@ -76,3 +76,6 @@ RUN apk add --no-cache curl make gcc g++ python linux-headers binutils-gold gnup
     rm -rf ${RM_DIRS} /node-${NODEJS_VERSION}* /usr/share/man /tmp/* /var/cache/apk/* \
     /root/.npm /root/.node-gyp /root/.gnupg /usr/lib/node_modules/npm/man \
     /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html /usr/lib/node_modules/npm/scripts
+
+VOLUME ["/project", "/root/.ssh", "/tmp"]
+WORKDIR /project
