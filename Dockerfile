@@ -7,6 +7,8 @@ LABEL description="PHP + NODEJS in Alpine"
 
 #YOU can use `--build-arg IN_CHINA=true` in command line to overwride this VAR
 ARG IN_CHINA="false"
+ARG HTTP_PROXY=""
+ARG HTTPS_PROXY=""
 
 ARG NODEJS_VERSION=v8.9.4
 ARG NPM_VERSION=5
@@ -18,6 +20,10 @@ ENV NODEJS_VERSION=${NODEJS_VERSION} NPM_VERSION=${NPM_VERSION} YARN_VERSION=${Y
 
 RUN [ "$IN_CHINA" == "true" ] && echo 'http://mirrors.ustc.edu.cn/alpine/v3.4/main/' >/etc/apk/repositories \
     && echo 'http://mirrors.ustc.edu.cn/alpine/v3.4/community/' >>/etc/apk/repositories || true
+
+RUN apk update --no-cache \
+    && apk add --no-cache \
+        unzip git
 
 # For Build NPMs Family
 ENV CONFIG_FLAGS="--fully-static" DEL_PKGS="libstdc++" RM_DIRS=/usr/include
