@@ -25,9 +25,7 @@ For example :
 
 >  php`7.1`-node`8.9`_`china`
 
-Means
-
-> `PHP` at  version `7.1.x` , `NodeJs` at  version `8.9.x` ,and contains [some special optimise](https://github.com/ihipop/php-nodejs-alpine/blob/master/README_CN.md) for users from `China`
+Means `PHP` at  version `7.1.x` , `NodeJs` at  version `8.9.x` ,and contains [some special optimise](https://github.com/ihipop/php-nodejs-alpine/blob/master/README_CN.md) for users from `China`
 
 >  node`8.9`.dynamic
 
