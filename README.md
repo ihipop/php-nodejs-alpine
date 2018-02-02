@@ -29,6 +29,15 @@ Means
 
 > `PHP` at  version `7.1.x` , `NodeJs` at  version `8.9.x` ,and contains [some special optimise](https://github.com/ihipop/php-nodejs-alpine/blob/master/README_CN.md) for users from `China`
 
+>  node`8.9`.dynamic
+
+Means the `nodejs` is build **dynamicly** , Ussally usefull in `CI`
+
+>  node`8.9`
+
+Means the `nodejs` is build **staticly** ie,the build flag has `--fully-static --without-npm`,Ussally usefull in `Production`
+
+
 **If you won't to use  this image in `china`, please choose those docker image without the `china` specialtag**
 
 # Build 
