@@ -15,7 +15,9 @@ docker run --rm -it -v $(pwd):'/project' ihipop/php-nodejs-alpine:php7.1-node8.9
 #...
 ```
 
+# Glibc
 
+There is `glibc` Integrated https://github.com/sgerrand/alpine-pkg-glibc
 
 # Tags Instruction
 
