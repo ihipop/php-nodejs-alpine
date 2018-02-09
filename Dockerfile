@@ -13,6 +13,8 @@ ARG DEL_PKGS=""
 #Always install these package and preserve
 ARG INSTALL_PKGS=""
 ARG STATIC_BUILD="false"
+ARG ALPINE_GLIBC_PACKAGE_VERSION="2.26-r0"
+
 
 # ---------------------------------------------------------------------------------------
 
@@ -37,6 +39,7 @@ ARG INSTALL_PKGS_DYNAMIC=" \
     libpng-dev \
     # mozjpeg
     pkgconfig autoconf automake libtool nasm \
+    # advancecomp
     zlib-dev \
     # make
     make gcc g++  \ 
@@ -123,5 +126,41 @@ RUN if [ "$STATIC_BUILD" == "true" ]; then \
     /root/.npm /root/.node-gyp /root/.gnupg /usr/lib/node_modules/npm/man \
     /usr/lib/node_modules/npm/doc /usr/lib/node_modules/npm/html /usr/lib/node_modules/npm/scripts
 
-VOLUME ["/project", "/root/.ssh", "/tmp"]
+# Here we install GNU libc (aka glibc) and set C.UTF-8 locale as default.
+
+ENV LANG=en_US.UTF-8
+# ENV LANGUAGE=en_US:en
+ENV LC_ALL=en_US.UTF-8
+
+RUN ALPINE_GLIBC_BASE_URL="https://github.com/sgerrand/alpine-pkg-glibc/releases/download" && \
+    # ALPINE_GLIBC_PACKAGE_VERSION="2.26-r0" && \
+    ALPINE_GLIBC_BASE_PACKAGE_FILENAME="glibc-$ALPINE_GLIBC_PACKAGE_VERSION.apk" && \
+    ALPINE_GLIBC_BIN_PACKAGE_FILENAME="glibc-bin-$ALPINE_GLIBC_PACKAGE_VERSION.apk" && \
+    ALPINE_GLIBC_I18N_PACKAGE_FILENAME="glibc-i18n-$ALPINE_GLIBC_PACKAGE_VERSION.apk" && \
+    apk add --no-cache --virtual=.build-dependencies curl ca-certificates && \
+    curl -L \
+        "https://raw.githubusercontent.com/sgerrand/alpine-pkg-glibc/master/sgerrand.rsa.pub" \
+        -o "/etc/apk/keys/sgerrand.rsa.pub" && \
+    curl -L "$ALPINE_GLIBC_BASE_URL/$ALPINE_GLIBC_PACKAGE_VERSION/$ALPINE_GLIBC_BASE_PACKAGE_FILENAME" -o "$ALPINE_GLIBC_BASE_PACKAGE_FILENAME" &&  \
+    curl -L "$ALPINE_GLIBC_BASE_URL/$ALPINE_GLIBC_PACKAGE_VERSION/$ALPINE_GLIBC_BIN_PACKAGE_FILENAME" -o "$ALPINE_GLIBC_BIN_PACKAGE_FILENAME" && \
+    curl -L "$ALPINE_GLIBC_BASE_URL/$ALPINE_GLIBC_PACKAGE_VERSION/$ALPINE_GLIBC_I18N_PACKAGE_FILENAME" -o "$ALPINE_GLIBC_I18N_PACKAGE_FILENAME" && \
+    apk add --no-cache \
+        "$ALPINE_GLIBC_BASE_PACKAGE_FILENAME" \
+        "$ALPINE_GLIBC_BIN_PACKAGE_FILENAME" \
+        "$ALPINE_GLIBC_I18N_PACKAGE_FILENAME" && \
+    \
+    rm "/etc/apk/keys/sgerrand.rsa.pub" && \
+    /usr/glibc-compat/bin/localedef -vvv --force --inputfile POSIX --charmap UTF-8 "$LANG" || true && \
+    echo "export LANG=$LANG" > /etc/profile.d/locale.sh && \
+    \
+    apk del glibc-i18n && \
+    \
+    rm -f "/root/.wget-hsts" && \
+    apk del .build-dependencies && \
+    rm \
+        "$ALPINE_GLIBC_BASE_PACKAGE_FILENAME" \
+        "$ALPINE_GLIBC_BIN_PACKAGE_FILENAME" \
+        "$ALPINE_GLIBC_I18N_PACKAGE_FILENAME"
+
+VOLUME ["/project", "/ssh", "/tmp"]
 WORKDIR /project
